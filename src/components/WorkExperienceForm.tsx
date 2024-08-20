@@ -1,0 +1,3 @@
+interface AddWorkExperienceFormProps {}
+
+const AddWorkExperienceForm = () => {};
