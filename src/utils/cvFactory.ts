@@ -1,52 +1,92 @@
-import { CV, CVService, Education, PersonalInfo, WorkExperience } from "../types/cv";
+// CVFactory.ts
+import { v4 as uuidv4 } from "uuid";
+import type { CV, WorkExperience, Education, PersonalInfo } from "../types/cv";
 
-function createCV(): CVService {
-	let cv: CV = {
-		personalInfo: {
-			name: "",
-			email: "",
-			phone: "",
-		},
-		education: [],
-		workExperience: [],
-		skills: [],
-	};
+export function createCVFactory() {
+	function createCV(): CV {
+		return {
+			personalInfo: { name: "", email: "", phone: "" },
+			workExperiences: [],
+			education: [],
+			skills: [],
+		};
+	}
+
+	function createWorkExperience(): WorkExperience {
+		return {
+			id: uuidv4(),
+			company: "",
+			position: "",
+			startDate: "",
+			endDate: "",
+		};
+	}
+
+	function createEducation(): Education {
+		return {
+			id: uuidv4(),
+			institution: "",
+			degree: "",
+			graduationYear: "",
+		};
+	}
+
+	function updatePersonalInfo(cv: CV, info: Partial<PersonalInfo>): CV {
+		return {
+			...cv,
+			personalInfo: { ...cv.personalInfo, ...info },
+		};
+	}
+
+	function addWorkExperience(cv: CV): CV {
+		return {
+			...cv,
+			workExperiences: [...cv.workExperiences, createWorkExperience()],
+		};
+	}
+
+	function updateWorkExperience(
+		cv: CV,
+		id: string,
+		experience: Partial<WorkExperience>,
+	): CV {
+		return {
+			...cv,
+			workExperiences: cv.workExperiences.map((exp) =>
+				exp.id === id ? { ...exp, ...experience } : exp,
+			),
+		};
+	}
+
+	function addEducation(cv: CV): CV {
+		return {
+			...cv,
+			education: [...cv.education, createEducation()],
+		};
+	}
+
+	function updateEducation(cv: CV, id: string, edu: Partial<Education>): CV {
+		return {
+			...cv,
+			education: cv.education.map((item) =>
+				item.id === id ? { ...item, ...edu } : item,
+			),
+		};
+	}
+
+	function updateSkills(cv: CV, skills: string[]): CV {
+		return { ...cv, skills };
+	}
 
 	return {
-		createCV: () => {
-			cv = {
-				personalInfo: { name: "", email: "", phone: "" },
-				education: [],
-				workExperience: [],
-				skills: [],
-			};
-			return cv;
-		},
-
-		updatePersonalInfo: (info: PersonalInfo) => {
-			cv.personalInfo = info
-		},
-
-		addEducation: (education: Education) => {
-			cv.education.push(education)
-		},
-
-		addWorkExperience: (experience: WorkExperience) => {
-			cv.workExperience.push(experience)
-		},
-
-		addSkills: (skill: string) => {
-			cv.skills.push(skill)
-		},
-
-		getCV: () => {
-			return {...cv}
-		}
-
-
-
-
+		createCV,
+		createWorkExperience,
+		createEducation,
+		updatePersonalInfo,
+		addWorkExperience,
+		updateWorkExperience,
+		addEducation,
+		updateEducation,
+		updateSkills,
 	};
 }
-
-export {createCV}

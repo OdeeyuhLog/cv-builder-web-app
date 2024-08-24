@@ -12,6 +12,16 @@ const CVPreview = ({ cv }: CVPreviewProps) => {
 			<p>{cv.personalInfo.name}</p>
 			<p>{cv.personalInfo.email}</p>
 			<p>{cv.personalInfo.phone}</p>
+
+			<h3>Work Experience</h3>
+			{cv.workExperiences.map((exp) => (
+				<div key={exp.id}>
+					<p>{exp.company}</p>
+					<p>{exp.position}</p>
+					<p>{exp.startDate}</p>
+					<p>{exp.endDate}</p>
+				</div>
+			))}
 		</div>
 	);
 };

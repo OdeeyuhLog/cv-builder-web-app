@@ -1,20 +1,12 @@
+import { v4 as uuidv4 } from "uuid";
 interface CV {
 	personalInfo: {
 		name: string;
 		email: string;
 		phone: string;
 	};
-	education: {
-		institution: string;
-		degree: string;
-		graduationYear: string;
-	}[];
-	workExperience: {
-		company: string;
-		position: string;
-		startDate: string;
-		endDate: string;
-	}[];
+	education: Education[];
+	workExperiences: WorkExperience[];
 	skills: string[];
 }
 
@@ -25,25 +17,18 @@ interface PersonalInfo {
 }
 
 interface Education {
+	id: string;
 	institution: string;
 	degree: string;
 	graduationYear: string;
 }
 
 interface WorkExperience {
+	id: string;
 	company: string;
 	position: string;
 	startDate: string;
 	endDate: string;
 }
 
-interface CVService {
-	createCV: () => CV;
-	updatePersonalInfo: (info: PersonalInfo) => void;
-	addEducation: (info: Education) => void;
-	addWorkExperience: (info: WorkExperience) => void;
-	addSkills: (skill: string) => void;
-	getCV: () => CV;
-}
-
-export type { CV, CVService, PersonalInfo, Education, WorkExperience };
+export type { CV, PersonalInfo, Education, WorkExperience };

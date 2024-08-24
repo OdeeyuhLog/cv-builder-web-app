@@ -36,7 +36,7 @@ const PersonalInfoForm = ({
 				<input
 					className=""
 					placeholder="Enter name..."
-					value={personalInfo.name}
+					value={personalInfo.phone}
 					onChange={handlePersonalInfoChange}
 					name="phone"
 				/>
