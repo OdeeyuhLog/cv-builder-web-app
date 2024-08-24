@@ -22,6 +22,15 @@ const CVPreview = ({ cv }: CVPreviewProps) => {
 					<p>{exp.endDate}</p>
 				</div>
 			))}
+
+			<h3>Education</h3>
+			{cv.education.map((edu) => (
+				<div key={edu.id}>
+					<p>{edu.institution}</p>
+					<p>{edu.degree}</p>
+					<p>{edu.graduationYear}</p>
+				</div>
+			))}
 		</div>
 	);
 };

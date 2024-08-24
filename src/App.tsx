@@ -3,6 +3,7 @@ import "./App.css";
 import PersonalInfoForm from "./components/PersonalInfoForm";
 import {
 	createWorkExperience,
+	Education,
 	type CV,
 	type PersonalInfo,
 	type WorkExperience,
@@ -10,6 +11,7 @@ import {
 import CVPreview from "./components/CVPreview";
 import { createCVFactory } from "./utils/cvFactory";
 import WorkExperienceSection from "./components/WorkExperienceSection";
+import EducationSection from "./components/EducationSection";
 
 function App() {
 	const cvFactory = createCVFactory();
@@ -25,7 +27,10 @@ function App() {
 	const addWorkExperience = () => {
 		setCv((prevCv) => ({
 			...prevCv,
-			workExperiences: [...prevCv.workExperiences, createWorkExperience()],
+			workExperiences: [
+				...prevCv.workExperiences,
+				cvFactory.createWorkExperience(),
+			],
 		}));
 	};
 
@@ -48,6 +53,29 @@ function App() {
 		}));
 	};
 
+	const addEducation = () => {
+		setCv((prevCv) => ({
+			...prevCv,
+			education: [...prevCv.education, cvFactory.createEducation()],
+		}));
+	};
+
+	const updateEducation = (id: string, education: Partial<Education>) => {
+		setCv((prevCv) => ({
+			...prevCv,
+			education: prevCv.education.map((edu) =>
+				edu.id === id ? { ...edu, ...education } : edu,
+			),
+		}));
+	};
+
+	const deleteEducation = (id: string) => {
+		setCv((prevCv) => ({
+			...prevCv,
+			education: prevCv.education.filter((edu) => edu.id !== id),
+		}));
+	};
+
 	return (
 		<>
 			<div>
@@ -61,6 +89,12 @@ function App() {
 						updateWorkExperience={updateWorkExperience}
 						addWorkExperience={addWorkExperience}
 						deleteWorkExperience={deleteWorkExperiece}
+					/>
+					<EducationSection
+						educations={cv.education}
+						addEducation={addEducation}
+						updateEducation={updateEducation}
+						deleteEducation={deleteEducation}
 					/>
 				</div>
 				<div>
