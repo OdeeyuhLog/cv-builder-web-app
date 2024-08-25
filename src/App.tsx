@@ -4,6 +4,7 @@ import PersonalInfoForm from "./components/PersonalInfoForm";
 import {
 	createWorkExperience,
 	Education,
+	Skill,
 	type CV,
 	type PersonalInfo,
 	type WorkExperience,
@@ -12,6 +13,7 @@ import CVPreview from "./components/CVPreview";
 import { createCVFactory } from "./utils/cvFactory";
 import WorkExperienceSection from "./components/WorkExperienceSection";
 import EducationSection from "./components/EducationSection";
+import SkillsSection from "./components/SkillsSection";
 
 function App() {
 	const cvFactory = createCVFactory();
@@ -76,6 +78,29 @@ function App() {
 		}));
 	};
 
+	const addSkill = () => {
+		setCv((prevCv) => ({
+			...prevCv,
+			skills: [...prevCv.skills, cvFactory.createSkill()],
+		}));
+	};
+
+	const updateSkill = (id: string, skill: Partial<Skill>) => {
+		setCv((prevCv) => ({
+			...prevCv,
+			skills: prevCv.skills.map((currentSkill) =>
+				currentSkill.id === id ? { ...currentSkill, ...skill } : currentSkill,
+			),
+		}));
+	};
+
+	const deleteSkill = (id: string) => {
+		setCv((prevCv) => ({
+			...prevCv,
+			skills: prevCv.skills.filter((currentSkill) => currentSkill.id !== id),
+		}));
+	};
+
 	return (
 		<>
 			<div>
@@ -95,6 +120,12 @@ function App() {
 						addEducation={addEducation}
 						updateEducation={updateEducation}
 						deleteEducation={deleteEducation}
+					/>
+					<SkillsSection
+						skills={cv.skills}
+						addSkill={addSkill}
+						updateSkill={updateSkill}
+						deleteSkill={deleteSkill}
 					/>
 				</div>
 				<div>

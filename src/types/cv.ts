@@ -7,7 +7,7 @@ interface CV {
 	};
 	education: Education[];
 	workExperiences: WorkExperience[];
-	skills: string[];
+	skills: Skill[];
 }
 
 interface PersonalInfo {
@@ -31,4 +31,9 @@ interface WorkExperience {
 	endDate: string;
 }
 
-export type { CV, PersonalInfo, Education, WorkExperience };
+interface Skill {
+	id: string;
+	skill: string;
+}
+
+export type { CV, PersonalInfo, Education, WorkExperience, Skill };

@@ -31,6 +31,13 @@ const CVPreview = ({ cv }: CVPreviewProps) => {
 					<p>{edu.graduationYear}</p>
 				</div>
 			))}
+
+			<h3>Skills</h3>
+			{cv.skills.map((skill) => (
+				<div key={skill.id}>
+					<p>{skill.skill}</p>
+				</div>
+			))}
 		</div>
 	);
 };

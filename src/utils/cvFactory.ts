@@ -1,6 +1,12 @@
 // CVFactory.ts
 import { v4 as uuidv4 } from "uuid";
-import type { CV, WorkExperience, Education, PersonalInfo } from "../types/cv";
+import type {
+	CV,
+	WorkExperience,
+	Education,
+	PersonalInfo,
+	Skill,
+} from "../types/cv";
 
 export function createCVFactory() {
 	function createCV(): CV {
@@ -28,6 +34,13 @@ export function createCVFactory() {
 			institution: "",
 			degree: "",
 			graduationYear: "",
+		};
+	}
+
+	function createSkill(): Skill {
+		return {
+			id: uuidv4(),
+			skill: "",
 		};
 	}
 
@@ -82,6 +95,7 @@ export function createCVFactory() {
 		createCV,
 		createWorkExperience,
 		createEducation,
+		createSkill,
 		updatePersonalInfo,
 		addWorkExperience,
 		updateWorkExperience,
