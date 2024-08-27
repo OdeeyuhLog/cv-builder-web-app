@@ -1,4 +1,6 @@
+import { Input } from "@nextui-org/input";
 import type { PersonalInfo } from "../types/cv";
+import { Card, CardBody, CardHeader } from "@nextui-org/card";
 
 interface PersonalInfoFormProps {
 	personalInfo: PersonalInfo;
@@ -15,33 +17,40 @@ const PersonalInfoForm = ({
 	};
 
 	return (
-		<div className="bg-slate-50">
-			<form>
-				<h2>Personal Information</h2>
-
-				<input
-					className=""
-					placeholder="Enter name..."
+		<Card className="p-4" isBlurred shadow="none">
+			<CardHeader>
+				<h2 className="font-semibold text-sm">Personal Information</h2>
+			</CardHeader>
+			<CardBody className=" flex flex-col gap-4">
+				<Input
 					value={personalInfo.name}
 					onChange={handlePersonalInfoChange}
 					name="name"
+					label="Full Name"
 				/>
-				<input
+
+				<Input
 					className=""
-					placeholder="Enter name..."
 					value={personalInfo.email}
 					onChange={handlePersonalInfoChange}
 					name="email"
+					label="Email Address"
 				/>
-				<input
+				<Input
 					className=""
-					placeholder="Enter name..."
 					value={personalInfo.phone}
 					onChange={handlePersonalInfoChange}
 					name="phone"
+					label="Phone number"
 				/>
-			</form>
-		</div>
+				<Input
+					value={personalInfo.location}
+					onChange={handlePersonalInfoChange}
+					name="location"
+					label="Location"
+				/>
+			</CardBody>
+		</Card>
 	);
 };
 

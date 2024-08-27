@@ -1,5 +1,8 @@
 import type React from "react";
 import type { WorkExperience } from "../types/cv";
+import { Card, CardBody, CardHeader } from "@nextui-org/card";
+import { Input, Textarea } from "@nextui-org/input";
+import { Button } from "@nextui-org/button";
 
 interface WorkExperienceFormProps {
 	workExperiences: WorkExperience[];
@@ -31,47 +34,74 @@ const WorkExperienceSection = ({
 		};
 
 	return (
-		<div>
-			<h2>Work Experiences</h2>
-			{workExperiences.map((experience) => (
-				<>
-					<div key={experience.id}>
-						<input
-							name="company"
-							value={experience.company}
-							onChange={handleChange(experience.id)}
-							placeholder="Company..."
-						/>
-						<input
-							name="position"
-							value={experience.position}
-							onChange={handleChange(experience.id)}
-							placeholder="Position..."
-						/>
-						<input
-							name="startDate"
-							value={experience.startDate}
-							onChange={handleChange(experience.id)}
-							placeholder="Start Date..."
-							type="date"
-						/>
-						<input
-							name="endDate"
-							value={experience.endDate}
-							onChange={handleChange(experience.id)}
-							placeholder="End Date..."
-							type="date"
-						/>
-						<button type="button" onClick={handleDelete(experience.id)}>
-							Delete
-						</button>
-					</div>
-				</>
-			))}
-			<button type="button" onClick={addWorkExperience}>
+		<Card className="p-4" shadow="none">
+			<CardHeader>
+				<h2 className="text-sm font-semibold min-w-10">
+					Work Experiences - {workExperiences.length}
+				</h2>
+			</CardHeader>
+			<CardBody className="overflow-y-visible flex-col gap-3">
+				{workExperiences.map((experience) => (
+					<>
+						<Card
+							key={experience.id}
+							shadow="sm"
+							className="p-3 flex-col gap-3"
+						>
+							<Input
+								label="Company"
+								name="company"
+								value={experience.company}
+								onChange={handleChange(experience.id)}
+							/>
+							<Input
+								label="Position"
+								name="position"
+								value={experience.position}
+								onChange={handleChange(experience.id)}
+							/>
+							<Input
+								label="Location"
+								name="location"
+								value={experience.location}
+								onChange={handleChange(experience.id)}
+							/>
+							<Input
+								label="Start Date"
+								name="startDate"
+								value={experience.startDate}
+								onChange={handleChange(experience.id)}
+								type="date"
+							/>
+							<Input
+								label="End Date"
+								name="endDate"
+								value={experience.endDate}
+								onChange={handleChange(experience.id)}
+								type="date"
+							/>
+							<Textarea
+								label="Responsibilities"
+								name="responsibilities"
+								value={experience.responsibilities}
+								onChange={handleChange(experience.id)}
+							/>
+							<Button
+								type="button"
+								color="danger"
+								onClick={handleDelete(experience.id)}
+							>
+								Delete
+							</Button>
+						</Card>
+					</>
+				))}
+			</CardBody>
+
+			<Button type="button" color="primary" onClick={addWorkExperience}>
 				Add Work Experience
-			</button>
-		</div>
+			</Button>
+		</Card>
 	);
 };
 

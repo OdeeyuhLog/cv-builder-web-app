@@ -1,5 +1,9 @@
+import { Card, CardBody, CardHeader } from "@nextui-org/card";
 import type { Skill } from "../types/cv";
 import type React from "react";
+import { Input } from "@nextui-org/input";
+import { Button } from "@nextui-org/button";
+import { TrashIcon } from "@radix-ui/react-icons";
 
 interface SkillsSectionProps {
 	skills: Skill[];
@@ -28,26 +32,44 @@ const SkillsSection = ({
 		};
 
 	return (
-		<div>
-			<h2>Skills</h2>
-			{skills.map((skill) => (
-				<div key={skill.id}>
-					<input
-						type="text"
-						onChange={handleChange(skill.id)}
-						value={skill.skill}
-						name="skill"
-						placeholder="Skill..."
-					/>
-					<button type="button" onClick={handleDelete(skill.id)}>
-						Delete
-					</button>
-				</div>
-			))}
-			<button type="button" onClick={addSkill}>
+		<Card className="p-4" shadow="none">
+			<CardHeader>
+				<h2 className="text-sm font-semibold">Skills - {skills.length}</h2>
+			</CardHeader>
+
+			<CardBody className="flex flex-col gap-3">
+				{skills.map((skill) => (
+					<Card
+						key={skill.id}
+						className="flex flex-row p-2 gap-3"
+						radius="sm"
+						shadow="sm"
+					>
+						<Input
+							type="text"
+							onChange={handleChange(skill.id)}
+							value={skill.skill}
+							name="skill"
+							placeholder="Skill..."
+							radius="sm"
+						/>
+						<Button
+							radius="sm"
+							type="button"
+							color="danger"
+							onClick={handleDelete(skill.id)}
+							className="min-w-5"
+						>
+							<TrashIcon className="size-6" />
+						</Button>
+					</Card>
+				))}
+			</CardBody>
+
+			<Button type="button" color="primary" onClick={addSkill}>
 				Add Skill
-			</button>
-		</div>
+			</Button>
+		</Card>
 	);
 };
 

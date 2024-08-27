@@ -14,6 +14,7 @@ import { createCVFactory } from "./utils/cvFactory";
 import WorkExperienceSection from "./components/WorkExperienceSection";
 import EducationSection from "./components/EducationSection";
 import SkillsSection from "./components/SkillsSection";
+import { Tab, Tabs } from "@nextui-org/tabs";
 
 function App() {
 	const cvFactory = createCVFactory();
@@ -103,32 +104,43 @@ function App() {
 
 	return (
 		<>
-			<div>
-				<div>
-					<PersonalInfoForm
-						personalInfo={cv.personalInfo}
-						updatePersonalInfo={updatePersonalInfo}
-					/>
-					<WorkExperienceSection
-						workExperiences={cv.workExperiences}
-						updateWorkExperience={updateWorkExperience}
-						addWorkExperience={addWorkExperience}
-						deleteWorkExperience={deleteWorkExperiece}
-					/>
-					<EducationSection
-						educations={cv.education}
-						addEducation={addEducation}
-						updateEducation={updateEducation}
-						deleteEducation={deleteEducation}
-					/>
-					<SkillsSection
-						skills={cv.skills}
-						addSkill={addSkill}
-						updateSkill={updateSkill}
-						deleteSkill={deleteSkill}
-					/>
+			<div className="flex justify-end min-w-full">
+				<div className="flex flex-col justify-start min-w-[40%]">
+					<Tabs color="primary" radius="lg" className="p-5">
+						<Tab key="personalInfoForm" title="Personal Info">
+							<PersonalInfoForm
+								personalInfo={cv.personalInfo}
+								updatePersonalInfo={updatePersonalInfo}
+							/>
+						</Tab>
+						<Tab key="workExperienceForm" title="Work Experience">
+							<WorkExperienceSection
+								workExperiences={cv.workExperiences}
+								updateWorkExperience={updateWorkExperience}
+								addWorkExperience={addWorkExperience}
+								deleteWorkExperience={deleteWorkExperiece}
+							/>
+						</Tab>
+						<Tab key="educationForm" title="Education">
+							<EducationSection
+								educations={cv.education}
+								addEducation={addEducation}
+								updateEducation={updateEducation}
+								deleteEducation={deleteEducation}
+							/>
+						</Tab>
+						<Tab key="skillsForm" title="Skills">
+							<SkillsSection
+								skills={cv.skills}
+								addSkill={addSkill}
+								updateSkill={updateSkill}
+								deleteSkill={deleteSkill}
+							/>
+						</Tab>
+					</Tabs>
 				</div>
-				<div>
+
+				<div className="min-w-[70%] p-5">
 					<CVPreview cv={cv} />
 				</div>
 			</div>

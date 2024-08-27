@@ -1,4 +1,7 @@
+import { Card, CardBody, CardHeader } from "@nextui-org/card";
 import type { Education } from "../types/cv";
+import { Button } from "@nextui-org/button";
+import { Input } from "@nextui-org/input";
 
 interface EducationSectionProps {
 	educations: Education[];
@@ -27,42 +30,60 @@ const EducationSection = ({
 		};
 
 	return (
-		<div>
-			<h2>Education</h2>
-			{educations.map((education) => (
-				<>
-					<div key={education.id}>
-						<input
-							type="text"
-							name="institution"
-							value={education.institution}
-							onChange={handleChange(education.id)}
-							placeholder="Institution"
-						/>
-						<input
-							type="text"
-							name="degree"
-							value={education.degree}
-							onChange={handleChange(education.id)}
-							placeholder="Degree"
-						/>
-						<input
-							type="date"
-							name="graduationYear"
-							value={education.graduationYear}
-							onChange={handleChange(education.id)}
-							placeholder="Institution"
-						/>
-						<button type="button" onClick={handleDelete(education.id)}>
-							Delete
-						</button>
-					</div>
-				</>
-			))}
-			<button type="button" onClick={addEducation}>
+		<Card className="p-4" shadow="none">
+			<CardHeader>
+				<h2 className="text-sm font-semibold">Education</h2>
+			</CardHeader>
+			<CardBody>
+				{educations.map((education) => (
+					<>
+						<Card
+							key={education.id}
+							className="flex flex-col gap-3 p-3"
+							shadow="sm"
+						>
+							<Input
+								label="Institution"
+								type="text"
+								name="institution"
+								value={education.institution}
+								onChange={handleChange(education.id)}
+							/>
+							<Input
+								label="Degree Earned"
+								type="text"
+								name="degree"
+								value={education.degree}
+								onChange={handleChange(education.id)}
+							/>
+							<Input
+								label="Location"
+								name="location"
+								value={education.location}
+								onChange={handleChange(education.id)}
+							/>
+							<Input
+								label="Graduation Year"
+								type="date"
+								name="graduationYear"
+								value={education.graduationYear}
+								onChange={handleChange(education.id)}
+							/>
+							<Button
+								type="button"
+								color="danger"
+								onClick={handleDelete(education.id)}
+							>
+								Delete
+							</Button>
+						</Card>
+					</>
+				))}
+			</CardBody>
+			<Button type="button" color="primary" onClick={addEducation}>
 				Add education
-			</button>
-		</div>
+			</Button>
+		</Card>
 	);
 };
 

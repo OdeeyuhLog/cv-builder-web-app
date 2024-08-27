@@ -87,7 +87,7 @@ export function createCVFactory() {
 		};
 	}
 
-	function updateSkills(cv: CV, skills: string[]): CV {
+	function updateSkills(cv: CV, skills: Skill[]): CV {
 		return { ...cv, skills };
 	}
 
