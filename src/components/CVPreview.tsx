@@ -10,9 +10,12 @@ import {
 import { Divider } from "@nextui-org/divider";
 import type React from "react";
 import { Button } from "@nextui-org/button";
-import html2pdf from "html2pdf.js";
+
 import { useReactToPrint } from "react-to-print";
 import { useRef } from "react";
+
+// @ts-ignore
+import html2pdf from "html2pdf.js/dist/html2pdf.bundle.min.js";
 
 interface CVPreviewProps {
 	cv: CV;
