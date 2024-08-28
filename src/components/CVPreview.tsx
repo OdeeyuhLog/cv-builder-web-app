@@ -5,14 +5,14 @@ import {
 	ChatBubbleIcon,
 	HomeIcon,
 	DownloadIcon,
+	FileIcon,
 } from "@radix-ui/react-icons";
 import { Divider } from "@nextui-org/divider";
 import type React from "react";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import { Button } from "@nextui-org/button";
 import CVPdf from "./CVPdf";
-import { useRef } from "react";
-import { useReactToPrint } from "react-to-print";
+import html2pdf from "html2pdf.js";
 
 interface CVPreviewProps {
 	cv: CV;
@@ -32,20 +32,32 @@ const Section = ({ title, children }: SectionProps) => (
 );
 
 const CVPreview = ({ cv }: CVPreviewProps) => {
+	const handlePrint = () => {
+		const element = document.getElementById("pdf-print");
+		const opt = {
+			filename: "cvfile.pdf",
+		};
+
+		html2pdf().set(opt).from(element).save();
+	};
 	return (
 		<div className="w-full max-w-4xl mx-auto">
 			<div className="flex justify-between">
 				<h2 className="mb-4 text-left text-2xl font-bold">CV Preview</h2>
-				<PDFDownloadLink document={<CVPdf cv={cv} />} fileName="my-cv.pdf">
-					{({ blob, url, loading, error }) => (
-						<Button color="primary" endContent={<DownloadIcon />}>
-							Download PDF
-						</Button>
-					)}
-				</PDFDownloadLink>
-				<Button>Print PDF</Button>
+				<div className="flex gap-3">
+					<Button
+						color="primary"
+						endContent={<DownloadIcon />}
+						onClick={handlePrint}
+					>
+						Download PDF
+					</Button>
+					<Button color="secondary" endContent={<FileIcon />}>
+						Print PDF
+					</Button>
+				</div>
 			</div>
-			<Card className="p-8" radius="sm" shadow="md">
+			<Card className="p-8" radius="sm" shadow="md" id="pdf-print">
 				<header className="text-center mb-8">
 					<h1 className="text-4xl font-bold mb-4">{cv.personalInfo.name}</h1>
 					<div className="flex flex-wrap justify-center gap-4 text-sm">
