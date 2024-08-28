@@ -107,7 +107,7 @@ function App() {
 			<div className="w-full p-0">
 				<Header />
 				<div className="flex justify-center min-w-full px-10">
-					<div className="flex flex-col justify-center min-w-[40%]">
+					<div className="flex flex-col justify-start min-w-[40%]">
 						<Tabs color="primary" radius="lg" className="p-5">
 							<Tab key="personalInfoForm" title="Personal Info">
 								<PersonalInfoForm
