@@ -11,7 +11,7 @@ import type {
 export function createCVFactory() {
 	function createCV(): CV {
 		return {
-			personalInfo: { name: "", email: "", phone: "" },
+			personalInfo: { name: "", email: "", phone: "", summary: '', location: '' },
 			workExperiences: [],
 			education: [],
 			skills: [],
@@ -25,6 +25,8 @@ export function createCVFactory() {
 			position: "",
 			startDate: "",
 			endDate: "",
+			location: '',
+			responsibilities: ''
 		};
 	}
 
@@ -34,6 +36,7 @@ export function createCVFactory() {
 			institution: "",
 			degree: "",
 			graduationYear: "",
+			location: ''
 		};
 	}
 
