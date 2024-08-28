@@ -1,13 +1,12 @@
 import { useState } from "react";
 import "./App.css";
 import PersonalInfoForm from "./components/PersonalInfoForm";
-import {
-	createWorkExperience,
+import type {
 	Education,
 	Skill,
-	type CV,
-	type PersonalInfo,
-	type WorkExperience,
+	CV,
+	PersonalInfo,
+	WorkExperience,
 } from "./types/cv";
 import CVPreview from "./components/CVPreview";
 import { createCVFactory } from "./utils/cvFactory";

@@ -1,5 +1,4 @@
 import { Button } from "@nextui-org/button";
-import { Card, CardBody, CardHeader } from "@nextui-org/card";
 import { Link } from "@nextui-org/react";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 
