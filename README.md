@@ -1,50 +1,43 @@
-# React + TypeScript + Vite
+# CV Builder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![CV Builder Logo](/public/website.jpg "CV Builder Logo")
 
-Currently, two official plugins are available:
+CV Builder is a modern web application that allows users to create professional resumes quickly and easily. Built with React, TypeScript, and styled with Tailwind CSS and Next UI, it offers a sleek, responsive interface and a variety of customization options.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- **User-Friendly Interface**: Intuitive design for easy navigation and resume creation.
+- **Real-Time Preview**: See your changes instantly as you build your CV.
+- **Export Options**: Download your CV as a PDF or print it immediately.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Technology Stack
 
-- Configure the top-level `parserOptions` property like this:
+- **React**: A JavaScript library for building user interfaces
+- **TypeScript**: Adds static type definitions to enhance code quality and understandability
+- **Tailwind CSS**: A utility-first CSS framework for rapid UI development
+- **Next UI**: A beautiful, fast, and modern React UI library
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Getting Started
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+1. Clone the repository:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+   ```
+   git clone https://github.com/yourusername/cv-builder.git
+   ```
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+2. Install dependencies:
+
+   ```
+   cd cv-builder
+   npm install
+   pnpm install
+   ```
+
+3. Run the development server:
+
+   ```
+   npm run dev
+   pnpm run dev
+   ```
+
+4. Open with your localhost server port to see the results
